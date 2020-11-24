@@ -1,0 +1,6 @@
+[2020/11/18 13:16:25][INFO][][0] 工作路径已切换到 C:\Users\redbencity\Desktop\HQP\产品\其他产品demo\来也\股票\CaptureStockDataRPA\
+[2020/11/18 13:16:25][INFO][CaptureStockDataRPA.flow][0] 流程 CaptureStockDataRPA.flow 开始运行
+[2020/11/18 13:16:25][INFO][CaptureStockDataRPA.flow][0] 进入流程块“抓取股票数据”
+[2020/11/18 13:16:35][INFO][CaptureStockDataRPA.flow][0] 进入流程块“插入数据库”
+[2020/11/18 13:17:00][INFO][CaptureStockDataRPA.flow][0] 进入流程块“关闭浏览器”
+[2020/11/18 13:17:00][INFO][CaptureStockDataRPA.flow][0] CaptureStockDataRPA.flow 运行已结束

@@ -1,0 +1,31 @@
+Dim iRet = ""
+Dim objDatabase = ""
+Dim hWeb = ""
+Dim sSQL = ""
+objDatatable = Datatable.BuildDataTable(arrayStockData,["NOIndex","StockNo","StockName","mark","NewPrice","Gains","DropDown","Turnover","VolumeOfTransaction","Amplitude","MaxPrice","MinPrice","TodayPrice","PREc","QuantityRelativeRatio","TurnoverRate","PERate","PBRate","mark2"])
+//TracePrint(objDatatable)
+
+objDatatable = Datatable.DropDuplicatesDataTable(objDatatable,[],"first")
+//arrayShape = Datatable.GetDataTableShape(objDatatable)
+//TracePrint("数据表数量："&arrayShape)
+//TracePrint(objDatatable)
+objDatatable = Datatable.QueryDataTable(objDatatable,"NOIndex!=\"序号\"")
+//TracePrint(objDatatable)
+objDatatable = Datatable.SelectDataTableColumns(objDatatable,["StockNo","StockName","NewPrice","Gains","DropDown","Turnover","VolumeOfTransaction","Amplitude","MaxPrice","MinPrice","TodayPrice","PREc","QuantityRelativeRatio","TurnoverRate","PERate","PBRate"])
+dTime = Time.Format(Time.Now(),"yyyy-mm-dd hh:mm:ss") 
+Datatable.AddColumn(objDatatable,"CreateDate",Null,dTime)
+//TracePrint(objDatatable)
+objDatatable = Datatable.GetDataTableByArray(objDatatable,False)
+TracePrint(objDatatable)
+objDatabase = Database.CreateDB("MySQL",{"charset":"utf8","database":"DB_Stock","host":"121.41.122.240","password":"tuTjuvxZNJwAzyBflV2gjg==","port":"3306","user":"hqp"})
+/*For Each sStockInfo In objDatatable
+	iRet = Database.ExecuteSQL(objDatabase, "INSERT INTO DB_Stock.StockInfo_copy1(StockNo,StockName,NewPrice,Gains,DropDown,Turnover,VolumeOfTransaction,Amplitude,MaxPrice,MinPrice,TodayPrice,PREc,QuantityRelativeRatio,TurnoverRate,PERate,PBRate) VALUES(%s ,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", {"args":sStockInfo})
+	// aa= ["11","tst","ddd"]
+	// iRet = Database.ExecuteSQL(objDatabase , "INSERT INTO DB_Stock.StockInfo_copy1 (StockNo,StockName,NewPrice) VALUES(%s,%s,%s)", {"args":aa})
+	// TracePrint(sStockInfo)
+Next
+*/
+iRet = Database.ExecuteBatchSQL(objDatabase , "INSERT INTO DB_Stock.StockInfo_temp(StockNo,StockName,NewPrice,Gains,DropDown,Turnover,VolumeOfTransaction,Amplitude,MaxPrice,MinPrice,TodayPrice,PREc,QuantityRelativeRatio,TurnoverRate,PERate,PBRate,CreateDate) VALUES(%s ,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", {"args":objDatatable})
+Database.CloseDB(objDatabase)
+
+

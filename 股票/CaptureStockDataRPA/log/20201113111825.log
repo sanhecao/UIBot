@@ -1,0 +1,7 @@
+[2020/11/13 11:18:25][INFO][][0] 工作路径已切换到 C:\Users\redbencity\Desktop\HQP\产品\其他产品demo\来也\股票\CaptureStockDataRPA\
+[2020/11/13 11:18:25][INFO][GetStockData.task][0] 流程 GetStockData.task 开始运行
+[2020/11/13 11:18:26][ERROR][GetStockData.task][6] 运行发生错误，流程中止
+错误信息如下：
+GetStockData.task 第6行：模块 Database.QueryOne 调用出错：QueryOne 异常：
+空的sql语句
+[2020/11/13 11:18:26][INFO][GetStockData.task][0] GetStockData.task 运行已结束

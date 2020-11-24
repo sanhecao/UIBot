@@ -1,0 +1,6 @@
+[2020/11/14 9:08:23][INFO][][0] 工作路径已切换到 C:\Users\redbencity\Desktop\HQP\产品\其他产品demo\来也\股票\CaptureStockDataRPA\
+[2020/11/14 9:08:23][INFO][GetStockInfo.task][0] 流程 GetStockInfo.task 开始运行
+[2020/11/14 9:09:01][ERROR][GetStockInfo.task][18] 运行发生错误，流程中止
+错误信息如下：
+GetStockInfo.task 第18行： 尝试去执行算术运算一个string值
+[2020/11/14 9:09:01][INFO][GetStockInfo.task][0] GetStockInfo.task 运行已结束

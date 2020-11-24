@@ -1,0 +1,23 @@
+Dim iRet = ""
+Dim dictRet = ""
+
+dictRet = Dialog.UDFDialog("输入数据库参数配置",@res"1605711294408.json",{},{"iTimeout":0,"strTimoutClick":"ok","bInterruptTimeout":True})
+TracePrint(dictRet)
+//arrSet = Set.ToArray(dictRet)
+sdatabase = dictRet["数据库名称"]
+sHost = dictRet["服务器Host"]
+sPassword =  dictRet["密码框"]
+sUser = dictRet["用户名User"]
+sPort = dictRet["端口Port"]
+TracePrint(sdatabase & sHost &sPassword &sUser &sPort)
+//Dialog.Notify("数据库配置信息不能为空！", "提示", "0")
+If sdatabase= "" Or sHost="" Or sPassword="" Or sUser ="" Or sPort = ""
+	//If IsNull(sdatabase) Or IsNull(sHost) Or IsNull(sPassword) Or IsNull(sUser) Or IsNull(sPort)
+	iRet = Dialog.MsgBox("数据库配置信息不能为空","UiBot","0","1",0)
+	isError = 1
+	
+Else
+	isError = 0	
+End If
+TracePrint(isError)
+

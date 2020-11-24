@@ -1,0 +1,39 @@
+Dim sStockInfo = ""
+Dim iLoadSuccess = 0
+Dim iRet = ""
+Dim sRet = ""
+Dim arrElement = ""
+Dim objRect = ""
+Dim hWeb = ""
+Dim ElementPage = ""
+Dim arrPage = []
+//Dim objDatatable = TDataTable
+Dim arrayShape = []
+Dim sAllPage =""
+hWeb = WebBrowser.Create("ie","http://quote.eastmoney.com/center/gridlist.html#hs_a_board",30000,{"bContinueOnError":False,"iDelayAfter":300,"iDelayBefore":200,"sBrowserPath":"","sStartArgs":""})
+#icon("@res:91kufv6j-cepf-604d-aho3-nka19096dqb2.png")
+iLoadSuccess = WebBrowser.WaitPage(hWeb,{"html":[{"aaname":"序号","parentid":"table_wrapper-table","tag":"SPAN"}],"wnd":[{"app":"iexplore","cls":"IEFrame","title":"*"},{"cls":"Internet Explorer_Server"}]},60000,{"bContinueOnError":False,"iDelayAfter":300,"iDelayBefore":200})
+#icon("@res:v7s8srh2-7ii7-s8ai-3upm-oat1lcfgme3t.png")
+arrPage = UiElement.GetChildren({"html":[{"css-selector":"body>div>div>div>div>div>div>div>span","parentid":"main-table_paginate","tag":"SPAN"}],"wnd":[{"app":"iexplore","cls":"IEFrame","title":"*"},{"cls":"Internet Explorer_Server"}]},{"bContinueOnError":False,"iDelayAfter":300,"iDelayBefore":200})
+iRet = Len(arrPage)
+ElementPage = arrPage[iRet - 1]
+#icon("@res:default.png")
+sAllPage = UiElement.GetValue(ElementPage,{"bContinueOnError":False,"iDelayAfter":300,"iDelayBefore":200})
+//sAllPage = 1
+TracePrint("总页数：" &sAllPage)
+If iLoadSuccess = 1
+	
+	arrayStockData = UiElement.DataScrap({"html":[{"tag":"TABLE"}],"wnd":[{"app":"iexplore","cls":"IEFrame","title":"*"},{"cls":"Internet Explorer_Server"}]},{"Columns":[],"ExtractTable":1},{"objNextLinkElement":{"html":[{"aaname":"下一页","parentid":"main-table_paginate","tag":"A"}],"wnd":[{"app":"iexplore","cls":"IEFrame","title":"*"},{"cls":"Internet Explorer_Server"}]},"iMaxNumberOfPage":Cint(sAllPage),"iMaxNumberOfResult":-1,"iDelayBetweenMS":1000,"bContinueOnError":False})	
+	iRet = Len(arrayStockData)
+	TracePrint("股票数量："&iRet)
+	/*For Each sStockInfo In arrayStockData
+		
+		TracePrint(sStockInfo)
+	Next
+    */
+	
+Else
+	
+End If
+
+
